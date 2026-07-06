@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh;
+}
+
+.numbers {
+    height: 420px;
+    width: 420px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+button {
+    display: flex;
+    width: 120px;
+    height: 120px;
+    font-size: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.operators {
+    height: 420px;
+    width: 280px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.equalsBox {
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
