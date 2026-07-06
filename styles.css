@@ -1,8 +1,24 @@
 body {
+    background-color: rgb(63, 48, 1);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100dvh;
+}
+
+.container {
+    display: column;
+    width: 750px;
+    min-height: 100dvh;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    display: flex;
+    flex: auto;
+    justify-content: center;
+    align-items: center;
 }
 
 .numbers {
@@ -21,6 +37,18 @@ button {
     align-items: center;
 }
 
+.display {
+    width: 750px;
+    display: flex;
+    gap:10px;
+    justify-content: center;
+}
+input {
+    width: 640px;
+    height: 80px;
+    margin: 10px;
+}
+
 .operators {
     height: 420px;
     width: 280px;
@@ -33,4 +61,8 @@ button {
     gap: 10px;
     display: flex;
     flex-wrap: wrap;
+}
+
+#plus {
+    margin-bottom: 10px;
 }
