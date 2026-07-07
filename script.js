@@ -1,7 +1,7 @@
 let firstNumber = ""
 let secondNumber = ""
 let myOperator = ""
-waitingFor = "firstNumber"
+let waitingFor = "firstNumber"
 
 function returnButtons() {
 const buttons = document.querySelectorAll("button")
@@ -24,12 +24,19 @@ function handleInput(buttonValue) {
         secondNumber += buttonValue
     }
     else if (buttonValue == "=") {
-        console.log(firstNumber, myOperator, secondNumber)
-        waitingFor = "firstNumber"
+        waitingFor = "reset"
+        if (myOperator == "+") console.log (sum(+firstNumber, +secondNumber))
+        else if (myOperator == "-") console.log (subtract(+firstNumber, +secondNumber))
+        else if (myOperator == "x") console.log (multiply(+firstNumber, +secondNumber))
+        else if (myOperator == "/") console.log (divide(+firstNumber, +secondNumber))
+    }
+    else if (waitingFor == "reset") {
+        myOperator = ""
         firstNumber = ""
         secondNumber = ""
-        myOperator = ""
+        waitingFor = "firstNumber"
     }
+
 }
 
 function isOperator(str) {
