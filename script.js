@@ -52,9 +52,6 @@ function isInteger(str) {
     }
 }
 
-
-
-
 function subtract(a, b) {
     return a - b
 }
@@ -62,7 +59,7 @@ function multiply(a, b) {
     return a * b
 }
 function divide(a, b) {
-    return a / b
+    return Math.floor(a / b * 100) / 100
 }
 function sum(a, b) {
     return a + b
