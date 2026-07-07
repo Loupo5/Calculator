@@ -6,14 +6,19 @@ body {
 }
 
 .container {
+
     display: column;
-    width: 750px;
-    min-height: 750px;
+    width: 600px;
+    height: 600px;
     justify-content: center;
     align-items: center;
 }
 
 .main {
+    background-color: rgb(136, 6, 6);
+    width: 600px;
+    height: 600px;
+    margin-top: -132px;
     display: flex;
     flex: auto;
     justify-content: center;
@@ -21,43 +26,46 @@ body {
 }
 
 .numbers {
-    height: 420px;
-    width: 420px;
+    height: 350px;
+    width: 305px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 p {
-    width: 120px;
-    height: 120px;
-    background-color: white;
+    width: 90px;
+    height: 90px;
+    background-color: rgb(136, 6, 6);
 }
 button {
     display: flex;
-    width: 120px;
-    height: 120px;
-    font-size: 100px;
+    width: 90px;
+    height: 90px;
+    font-size: 75px;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .display {
-    width: 750px;
+    width: 570px;
     display: flex;
     gap:10px;
     justify-content: center;
+    align-content: center;
 }
 input {
-    width: 640px;
-    height: 80px;
-    font-size: 60px;
+    background-color: greenyellow;
+    width: 500px;
+    height: 120px;
+    font-size: 90px;
     margin: 10px;
     text-align: end;
 }
 
 .operators {
-    height: 420px;
-    width: 280px;
+    height: 350px;
+    width: 233px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
