@@ -2,6 +2,7 @@ let firstNumber = ""
 let secondNumber = ""
 let myOperator = ""
 let result = ""
+let myError = false
 let waitingFor = "firstNumber"
 
 const display = document.querySelector("input")
@@ -27,7 +28,12 @@ function handleInput(buttonValue) {
         display.value = firstNumber
     }
     else if (isOperator(buttonValue) && waitingFor == "firstNumber") {
-        if (firstNumber == "") firstNumber = result
+        if (myError) {
+            firstNumber = "0"
+            display.value = "0"
+            myError = false
+        }
+        else if (firstNumber == "") firstNumber = result
         myOperator = buttonValue
         display.value += buttonValue
         waitingFor = "secondNumber"
@@ -57,17 +63,26 @@ function handleInput(buttonValue) {
             display.value = multiply(+firstNumber, +secondNumber)
         }
         else if (myOperator == "÷") {
-            result = divide(+firstNumber, +secondNumber)
+            if (secondNumber == "0") {
+                error()
+            }
+            else {result = divide(+firstNumber, +secondNumber)
             console.log (`${firstNumber} / ${secondNumber} =
                  ${divide(+firstNumber, +secondNumber)}`)
-            display.value = divide(+firstNumber, +secondNumber)
+            display.value = divide(+firstNumber, +secondNumber)}
         }
     }
     if (waitingFor == "reset") {
         clear()
     }
-
 }
+
+function error() {
+    display.style.fontSize="60px"
+    display.value = "not happening"
+    myError = true
+}
+
 function clear() {
     firstNumber = ""
     secondNumber = ""
