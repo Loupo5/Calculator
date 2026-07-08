@@ -1,6 +1,7 @@
 let firstNumber = ""
 let secondNumber = ""
 let myOperator = ""
+let result = ""
 let waitingFor = "firstNumber"
 
 const display = document.querySelector("input")
@@ -10,6 +11,11 @@ function returnButtons() {
 const buttons = document.querySelectorAll("button")
 for (let button of buttons) {
     button.addEventListener("click", () => {
+        console.log(button.textContent)
+        if (button.textContent == "AC") {
+            clear()
+            display.value = "0"
+        }
         handleInput(button.textContent)
     })
 }}
@@ -20,45 +26,53 @@ function handleInput(buttonValue) {
         firstNumber += buttonValue
         display.value = firstNumber
     }
-    if (isOperator(buttonValue)) {
+    else if (isOperator(buttonValue) && waitingFor == "firstNumber") {
+        if (firstNumber == "") firstNumber = result
         myOperator = buttonValue
-        display.value = buttonValue
+        display.value += buttonValue
         waitingFor = "secondNumber"
     }
     if (waitingFor == "secondNumber" && isInteger(buttonValue)) {
         secondNumber += buttonValue
-        display.value = secondNumber
+        display.value += secondNumber
     }
-    if (buttonValue == "=") {
+    else if (buttonValue == "=" && waitingFor == "secondNumber") {
         waitingFor = "reset"
         if (myOperator == "+") {
+            result = sum(+firstNumber, +secondNumber)
             console.log (`${firstNumber} + ${secondNumber} =
                  ${sum(+firstNumber, +secondNumber)}`)
             display.value = sum(+firstNumber, +secondNumber)
         }
         else if (myOperator == "-") {
+            result = subtract(+firstNumber, +secondNumber)
             console.log (`${firstNumber} - ${secondNumber} =
                  ${subtract(+firstNumber, +secondNumber)}`)
             display.value = subtract(+firstNumber, +secondNumber)
         }
         else if (myOperator == "x") {
+            result = multiply(+firstNumber, +secondNumber)
             console.log (`${firstNumber} x ${secondNumber} =
                  ${multiply(+firstNumber, +secondNumber)}`)
             display.value = multiply(+firstNumber, +secondNumber)
         }
         else if (myOperator == "÷") {
+            result = divide(+firstNumber, +secondNumber)
             console.log (`${firstNumber} / ${secondNumber} =
                  ${divide(+firstNumber, +secondNumber)}`)
             display.value = divide(+firstNumber, +secondNumber)
         }
     }
     if (waitingFor == "reset") {
-        myOperator = ""
-        firstNumber = ""
-        secondNumber = ""
-        waitingFor = "firstNumber"
+        clear()
     }
 
+}
+function clear() {
+    firstNumber = ""
+    secondNumber = ""
+    myOperator = ""
+    waitingFor = "firstNumber"
 }
 
 function isOperator(str) {
@@ -68,7 +82,7 @@ function isOperator(str) {
     }
 }
 function isInteger(str) {
-    const integers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    const integers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     if (integers.includes(str)){
         return true
     }
