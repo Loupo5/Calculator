@@ -27,6 +27,7 @@ function handleInput(buttonValue) {
         firstNumber += buttonValue
         display.value = firstNumber
     }
+    if (buttonValue == "CE") backspace(buttonValue)
     else if (isOperator(buttonValue) && waitingFor == "firstNumber") {
         if (myError) {
             firstNumber = "0"
@@ -35,12 +36,12 @@ function handleInput(buttonValue) {
         }
         else if (firstNumber == "") firstNumber = result
         myOperator = buttonValue
-        display.value += buttonValue
+        display.value = firstNumber + myOperator
         waitingFor = "secondNumber"
     }
     if (waitingFor == "secondNumber" && isInteger(buttonValue)) {
         secondNumber += buttonValue
-        display.value += secondNumber
+        display.value = firstNumber + myOperator + secondNumber
     }
     else if (buttonValue == "=" && waitingFor == "secondNumber") {
         waitingFor = "reset"
@@ -88,6 +89,22 @@ function clear() {
     secondNumber = ""
     myOperator = ""
     waitingFor = "firstNumber"
+}
+
+function backspace() {
+    if (waitingFor == "firstNumber") {
+        firstNumber = firstNumber.slice(0, -1)
+    }
+    if (waitingFor == "secondNumber") {
+        if (secondNumber != "") {
+            secondNumber = secondNumber.slice(0, -1)
+        }
+        else {
+            myOperator = ""
+            waitingFor = "firstNumber"
+        }
+    }
+    display.value = (display.value).slice(0, -1)
 }
 
 function isOperator(str) {
