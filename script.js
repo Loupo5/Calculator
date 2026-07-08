@@ -9,20 +9,22 @@ const display = document.querySelector("input")
 display.value = "0"
 
 function returnButtons() {
-const buttons = document.querySelectorAll("button")
-for (let button of buttons) {
-    button.addEventListener("click", () => {
-        console.log(button.textContent)
-        if (button.textContent == "AC") {
-            clear()
-            display.value = "0"
-        }
-        handleInput(button.textContent)
-    })
-}}
+    const buttons = document.querySelectorAll("button")
+    for (let button of buttons) {
+        button.addEventListener("click", () => {
+            console.log(button.textContent)
+            if (button.textContent == "AC") {
+                clear()
+                display.value = "0"
+            }
+            handleInput(button.textContent)
+        })
+    }
+}
 returnButtons()
 
 function handleInput(buttonValue) {
+    display.style.fontSize = "90px"
     if (isInteger(buttonValue) && waitingFor == "firstNumber") {
         firstNumber += buttonValue
         display.value = firstNumber
@@ -30,8 +32,10 @@ function handleInput(buttonValue) {
     if (buttonValue == "CE") backspace(buttonValue)
     else if (isOperator(buttonValue) && waitingFor == "firstNumber") {
         if (myError) {
-            firstNumber = "0"
-            display.value = "0"
+            if (firstNumber == "") {
+                firstNumber = "0"
+                display.value = "0"
+            }
             myError = false
         }
         else if (firstNumber == "") firstNumber = result
